@@ -4,7 +4,6 @@ var answer1  = $('.answer1')
 var answer2  = $('.answer2')
 var answer3  = $('.answer3')
 var answer4  = $('.answer4')
-console.log(answer2.val())
 var start = $('.start');
 var hiscore = $('.highscore');
 var hsbtn = $('.enths')
@@ -16,6 +15,10 @@ var score = 0
 var newhs = localStorage.getItem("highscore")
 var hscore = newhs
 var newhsn = localStorage.getItem("highscoren")
+
+
+
+
 if (newhs > 0 ){
     hiscore.text("highscore: " + newhs + " by " +newhsn)
 }
@@ -40,13 +43,16 @@ var timeInterval = setInterval(function () {
   
      clearInterval
      questionEl.text('Finished!')
+     
+     
+     
+    
  }} , 1000);
 }
 function savehs(){
-    
-  
-    if (score > hscore ){
     var hsform = $(".form-input")
+    if (score > hscore ){
+   
     console.log(hsform.val())
     hscore =score
     hiscore.text("highscore: " + hscore + " "+ hsform.val())
@@ -61,7 +67,7 @@ return}
 
 function  question1(){
     questionEl.text('What tag is used to define the metadata about an HTML document, and must always be included inside the element?')
-    console.log('henlo')
+    
  answer1.val('table')
  answer2.val('meta')
  answer3.val('div')
@@ -71,7 +77,7 @@ function  question1(){
 };
 function question2(){
     questionEl.text('What group of tags are used to define the text headers in the body of the HTML document?')
-    console.log('henlo')
+    
  answer1.val('h1-h6')
  answer2.val('button')
  answer3.val('td')
@@ -79,7 +85,7 @@ function question2(){
 };
 function question3(){
         questionEl.text('What element is a container for all the head elements, and may include the document title, scripts, styles, meta information, and more?')
-        console.log('henlo')
+        
      answer1.val('body')
      answer2.val('br')
      answer3.val('head')
@@ -87,7 +93,7 @@ function question3(){
 };
 function question4(){
         questionEl.text('What tag is used to define – and place – an interactive button in an HTML document?')
-        console.log('henlo')
+        
      answer1.val('td')
      answer2.val('button')
      answer3.val('footer')
@@ -95,17 +101,14 @@ function question4(){
 };
 function question5(){
         questionEl.text('What tag is used to render or transform text into an important (bold) version?')
-        console.log('henlo')
+        
      answer1.val('em')
      answer2.val('a')
      answer3.val('blockquote')
      answer4.val('strong')
 };
 function check1(){
-    if (timeleft == 0){
-        return
-        
-    }
+    if ( timeleft <= 0 ) { return; }  
    
     else if ((answer1.val()) == 'table'){
         questionEl.text('Incorrect!')
@@ -116,7 +119,7 @@ function check1(){
         timeleft --
         timeleft --
         question2()
-       
+        return
     }
     
     else if ((answer1.val()) == 'body'){
@@ -128,7 +131,7 @@ function check1(){
         timeleft --
         timeleft --
         question4()
-        
+        return
     }
     else if ((answer1.val()) == 'td'){
         questionEl.text('Incorrect!')
@@ -139,6 +142,7 @@ function check1(){
         timeleft --
         timeleft --
         question5()
+        return
         
     }
     else if ((answer1.val()) == 'em'){
@@ -150,23 +154,20 @@ function check1(){
         timeleft --
         timeleft --
         question1()
-        
+        return
     }
     else if((answer1.val()) == 'h1-h6'){
         questionEl.text('Correct!');
         score ++
         cscore.text("current score" + " " + score)
         question3()
-       
+        return
     }
  
 };
 
 function check2(){
-    if (timeleft == 0){
-        return
-        
-    }
+    if ( timeleft <= 0 ) { return; }  
   
   
   
@@ -179,6 +180,7 @@ function check2(){
             timeleft --
             timeleft --
             question3()
+            return
         }
         else if ((answer2.val()) == 'br'){
             questionEl.text('Incorrect!')
@@ -189,7 +191,7 @@ function check2(){
             timeleft --
             timeleft --
             question4()
-         
+            return
             
         }
        
@@ -202,29 +204,27 @@ function check2(){
             timeleft --
             timeleft --
             question1()
-        
+            return
         } 
         if((answer2.val()) == 'button'){
             questionEl.text('Correct!');
             score ++
             cscore.text("current score" + " " + score)
             question5()
-            
+            return
         }
         if((answer2.val()) == 'meta'){
             questionEl.text('Correct!');
             score ++
             cscore.text("current score" + " " + score)
             question2()
-            console.log("hello")
+            
+            return
         }
 };
 
 function check3(){
-    if (timeleft == 0){
-        return
-        
-    }
+    if ( timeleft <= 0 ) { return; }  
    
     else if ((answer3.val()) == 'div'){
         questionEl.text('Incorrect!')
@@ -235,7 +235,7 @@ function check3(){
         timeleft --
         timeleft --
         question2()
-  
+        return
     }
     else if ((answer3.val()) == 'td'){
         questionEl.text('Incorrect!')
@@ -246,7 +246,7 @@ function check3(){
         timeleft --
         timeleft --
         question3()
-       
+        return
     }
    
     else if ((answer3.val()) == 'footer'){
@@ -258,7 +258,7 @@ function check3(){
         timeleft --
         timeleft --
         question5()
-   
+        return
     }
     else if ((answer3.val()) == 'blockquote'){
         questionEl.text('Incorrect!')
@@ -269,24 +269,23 @@ function check3(){
         timeleft --
         timeleft --
         question1()
-     
+        return
     }
     if((answer3.val()) == 'head'){
         questionEl.text('Correct!');
         score ++
         cscore.text("current score" + " " + score)
         question4()
-        
+        return
     }
 };
 
 function check4(){
-    if (timeleft == 0){
-        return false
-        
-    }
+    if ( timeleft <= 0 ) { return; }  
     
-    if ((answer4.val()) == 'img'){
+    
+   
+    if ((answer4.val()) == 'title'){
         questionEl.text('Incorrect!')
         timeleft --
         timeleft --
@@ -294,8 +293,9 @@ function check4(){
         timeleft --
         timeleft --
         timeleft --
-        question2()
-     
+        question4()
+        return
+        return
     }
     if ((answer4.val()) == 'footer'){
         questionEl.text('Incorrect!')
@@ -306,18 +306,7 @@ function check4(){
         timeleft --
         timeleft --
         question3()
-     
-    }
-    if ((answer4.val()) == 'title'){
-        questionEl.text('Incorrect!')
-        timeleft --
-        timeleft --
-        timeleft --
-        timeleft --
-        timeleft --
-        timeleft --
-        question4()
-      
+        return
     }
     if ((answer4.val()) == 'clickfield'){
         questionEl.text('Incorrect!')
@@ -328,14 +317,25 @@ function check4(){
         timeleft --
         timeleft --
         question5()
-   
+        return
+    }
+    if ((answer4.val()) == 'img'){
+        questionEl.text('Incorrect!')
+        timeleft --
+        timeleft --
+        timeleft --
+        timeleft --
+        timeleft --
+        timeleft --
+        question2()
+        return
     }
     if((answer4.val()) == 'strong'){
         questionEl.text('Correct!');
         score ++
         cscore.text("current score" + " " + score)
         question1()
-        
+        return
     }
 }
 function gamestart(){
